@@ -28,3 +28,5 @@ jobs:
         context: .
         push: true
         tags: yomiyus/project-frontend:latest
+      env:
+        SECRET_COOKIE_PASSWORD: ${{ secrets.SECRET_COOKIE_PASSWORD }}
