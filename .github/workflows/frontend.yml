@@ -21,12 +21,18 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-
+  
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
         context: .
         push: true
         tags: yomiyus/project-frontend:latest
+    - name: Create .env.local file
+    run: |
+       echo "SECRET_COOKIE_PASSWORD=${{ secrets.SECRET_COOKIE_PASSWORD }}" >> .env.local
+       echo "IRON_SESSION_PASSWORD=${{ secrets.IRON_SESSION_PASSWORD }}" >> .env.local
+       echo "BACKEND_API_HOST=http://app:8000" >> .env.local
+       echo "NEXT_PUBLIC_BACKEND_URL=http://app:8000" >> .env.local
       env:
         SECRET_COOKIE_PASSWORD: ${{ secrets.SECRET_COOKIE_PASSWORD }}
