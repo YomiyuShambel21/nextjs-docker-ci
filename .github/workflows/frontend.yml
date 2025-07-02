@@ -3,7 +3,7 @@ name: Frontend CI/CD
 on:
   push:
     branches:
-      - main  # Trigger only on push to main
+      - main
 
 jobs:
   build-and-push:
